@@ -130,4 +130,21 @@ class Data
         arrayToXml($array, $xml);
         return $xml->saveXML();
     }
+
+    // 获取(按位或)最终结果
+
+    /**
+     * @param array $keyMap 或运算的值
+     * @param int $value 值
+     * @return array
+     */
+    public static function getBitOr(array$keyMap,int $value):array{
+        $result = [];
+        foreach ($keyMap as $v) {
+            if(($value & $v) === $v){
+                $result[] = $v;
+            }
+        }
+        return $result;
+    }
 }
