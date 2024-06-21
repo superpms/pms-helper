@@ -190,7 +190,7 @@ class HttpClient
     }
 
     /**
-     * 获取最后跳转地址
+     * 获取CURL信息
      * @param int $opt CURLINFO_EFFECTIVE_URL - 最后一个有效的URL地址
      *                 CURLINFO_HTTP_CODE - 最后一个收到的HTTP代码
      *                 CURLINFO_FILETIME - 远程获取文档的时间，如果无法获取，则返回值为“-1”
@@ -211,12 +211,11 @@ class HttpClient
      *                 CURLINFO_CONTENT_LENGTH_DOWNLOAD - 从Content-Length: field中读取的下载内容长度
      *                 CURLINFO_CONTENT_LENGTH_UPLOAD - 上传内容大小的说明
      *                 CURLINFO_CONTENT_TYPE - 下载内容的Content-Type:值，NULL表示服务器没有发送有效的Content-Type: header
-     * @return HttpClient
+     * @return mixed
      */
-    public function setInfo(int $opt = CURLINFO_EFFECTIVE_URL): HttpClient
+    public function getInfo(int $opt = CURLINFO_EFFECTIVE_URL): HttpClient
     {
-        $this->result['info'] = curl_getinfo($this->handler, $opt);
-        return $this;
+        return curl_getinfo($this->handler, $opt);
     }
 
     /**
