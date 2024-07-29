@@ -72,49 +72,35 @@ class Process
             $type = str_replace('||', '|', $type);
             $type = str_replace('|', ',', $type);
             $type = explode(',', $type);
-            foreach ($type as $value){
+            foreach ($type as $value) {
                 $default = true;
                 switch ($value) {
                     case 'INT':
-                        if (!is_integer($datum)) {
-                            $default = false;
-                        }
+                        $default = is_integer($datum);
                         break;
                     case 'DOUBLE':
-                        if (!is_double($datum)) {
-                            $default = false;
-                        }
+                        $default = is_double($datum);
                         break;
                     case 'NUMBER':
-                        if (is_string($datum) || !is_numeric($datum)) {
-                            $default = false;
-                        }
+                        $default = !is_string($datum) && is_numeric($datum);
                         break;
-                    case 'STRIING':
+                    case 'STRING':
                     case 'STR':
-                        if (!is_string($datum)) {
-                            $default = false;
-                        }
+                        $default = is_string($datum);
                         break;
                     case 'ARRAY':
                     case 'ARR':
-                        if (!is_array($datum)) {
-                            $default = false;
-                        }
+                        $default = is_array($datum);
                         break;
                     case 'BOOL':
                     case 'BOOLEAN':
-                        if (!is_bool($datum)) {
-                            $default = false;
-                        }
+                        $default = is_bool($datum);
                         break;
                     case 'FILE':
-                        if (!is_file($datum)) {
-                            $default = false;
-                        }
+                        $default = isset($datum['tmp_name']) && !is_file($datum['tmp_name']);
                         break;
                 }
-                if($default){
+                if ($default) {
                     return true;
                 }
             }
