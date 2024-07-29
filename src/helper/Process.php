@@ -97,7 +97,7 @@ class Process
                         $default = is_bool($datum);
                         break;
                     case 'FILE':
-                        $default = isset($datum['tmp_name']) && !is_file($datum['tmp_name']);
+                        $default = isset($datum['tmp_name']) && is_file($datum['tmp_name']);
                         break;
                 }
                 if ($default) {
