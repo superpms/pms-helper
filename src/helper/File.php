@@ -77,7 +77,7 @@ class File
      * @param int $chunkSize 分块大小
      * @return bool
      */
-    public static function readFileForChunk(string $path, \Closure $fn,int $chunkSize = 1024 * 1024 * 4,): bool{
+    public static function readFileForChunk(string $path, \Closure $fn,int $chunkSize = 1024 * 1024 * 4): bool{
         if(!is_file($path)){
             return false;
         }
@@ -103,6 +103,17 @@ class File
             return false;
         }
         return $data;
+    }
+
+    /**
+     * 移动文件
+     * @param string $move 原文件地址
+     * @param string $to 移动后文件地址
+     * @return bool
+     */
+    public static function moveFile(string $move, string $to): bool
+    {
+        return rename($move, $to);
     }
 
 }

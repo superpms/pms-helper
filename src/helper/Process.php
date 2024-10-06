@@ -43,6 +43,13 @@ class Process
                         $value = json_decode($value, true);
                     }
                     break;
+                case 'PARSESTR':
+                    if(is_string($value)){
+                        $newValue = [];
+                        parse_str($value, $newValue);
+                        $value = $newValue;
+                    }
+                    break;
             }
         }
         return $value;
