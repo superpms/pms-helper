@@ -119,6 +119,6 @@ class Process
 
     static function realEmpty($datum): bool
     {
-        return !is_numeric($datum) && !is_bool($datum) && empty($datum);
+        return !is_numeric($datum) && !is_bool($datum) && !is_array($datum) && empty($datum);
     }
 }
